@@ -33,3 +33,12 @@ hadoop jar FuzzyClassifier.jar pe.unsa.fuzzyclassifier.learner.MapReduceLauncher
 
 
 hadoop jar FuzzyClassifier.jar pe.unsa.fuzzyclassifier.classifier.MapReduceLauncher hdfs://cluster-fuzzy-tesis-m /user/jairfrancescohc/inputlearner/config.txt /user/jairfrancescohc/inputlearner/header_example.header /user/jairfrancescohc/output/DB /user/jairfrancescohc/output/RB /user/jairfrancescohc/inputlearner/data_example.data /user/jairfrancescohc/outputclassifier
+
+
+##learner kkdcup
+
+hadoop jar FuzzyClassifier.jar pe.unsa.fuzzyclassifier.learner.MapReduceLauncher hdfs://cluster-fuzzy-tesis-m /user/jairfrancescohc/inputlearner/config.txt /user/jairfrancescohc/inputlearner/kddcup.header /user/jairfrancescohc/inputlearner/kddcup.data /user/jairfrancescohc/outputkddcup
+
+##classifier kddcup
+
+hadoop jar FuzzyClassifier.jar pe.unsa.fuzzyclassifier.classifier.MapReduceLauncher hdfs://cluster-fuzzy-tesis-m /user/jairfrancescohc/inputlearner/config.txt /user/jairfrancescohc/inputlearner/kddcup.header /user/jairfrancescohc/outputkddcup/DB /user/jairfrancescohc/outputkddcup/RB /user/jairfrancescohc/inputlearner/kddcup.data /user/jairfrancescohc/outputkddcupclassifier
