@@ -1,0 +1,35 @@
+Comandos en el master del cluster
+
+hadoop fs -mkdir /user
+hadoop fs -mkdir /user/jairfrancescohc
+hadoop fs -mkdir /user/jairfrancescohc/input
+nano wordcounttest.txt
+hadoop fs -put wordcounttest.txt /user/jairfrancescohc/input
+#hadoop fs -put wordcounttest.txt /user/jairfrancescohc/input/wordcounttest.txt
+hadoop fs -rm -r /user/jairfrancescohc/output
+
+hadoop jar WordCount.jar WordCount /user/jairfrancescohc/input /user/jairfrancescohc/output
+hadoop fs -ls /user/jairfrancescohc/output
+hadoop fs -cat /user/jairfrancescohc/output/part-r-00000
+
+
+##LEARNER
+
+
+hadoop fs -mkdir /user/jairfrancescohc/inputlearner
+hadoop fs -put header_example.header /user/jairfrancescohc/inputlearner
+hadoop fs -put data_example.data /user/jairfrancescohc/inputlearner
+hadoop fs -put config.txt /user/jairfrancescohc/inputlearner
+
+hadoop jar FuzzyClassifier.jar pe.unsa.fuzzyclassifier.learner.MapReduceLauncher hdfs://cluster-fuzzy-tesis-m /user/jairfrancescohc/inputlearner/config.txt /user/jairfrancescohc/inputlearner/header_example.header /user/jairfrancescohc/inputlearner/data_example.data /user/jairfrancescohc/output
+
+
+##CLASIFIER
+
+#hadoop fs -mkdir /user/jairfrancescohc/inputclassifier
+#hadoop fs -put header_example.header /user/jairfrancescohc/inputclassifier
+#hadoop fs -put data_example.data /user/jairfrancescohc/inputclassifier
+#hadoop fs -put config.txt /user/jairfrancescohc/inputclassifier
+
+
+hadoop jar FuzzyClassifier.jar pe.unsa.fuzzyclassifier.classifier.MapReduceLauncher hdfs://cluster-fuzzy-tesis-m /user/jairfrancescohc/inputlearner/config.txt /user/jairfrancescohc/inputlearner/header_example.header /user/jairfrancescohc/output/DB /user/jairfrancescohc/output/RB /user/jairfrancescohc/inputlearner/data_example.data /user/jairfrancescohc/outputclassifier
